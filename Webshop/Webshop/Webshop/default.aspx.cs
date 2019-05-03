@@ -14,11 +14,38 @@ namespace Webshop
         {
             gvProducten.DataSource = _cont.haalProductenOp();
             gvProducten.DataBind();
+
+            for(int i = 0; i<gvProducten.Rows.Count; i++)
+            {
+                
+                    if (Convert.ToInt32(gvProducten.Rows[i].Cells[4].Text) == 0)
+                    {
+                        gvProducten.Rows[i].Cells[5].Text = "Niet op voorraad";
+                        gvProducten.Rows[i].Cells[5].Enabled = false;
+                    }
+                
+                
+            }
         }
 
         protected void gvProducten_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(gvProducten.SelectedRow.Cells[0].Text);
+
+            Session["ArtNr"] = gvProducten.SelectedRow.Cells[0].Text;
+
+            Response.Redirect("toevoegen.aspx");
+        }
+
+        protected void btnWinkelmandje_Click(object sender, EventArgs e)
+        {
+            if (_cont.MandjeChecken(1))
+            {
+                Response.Redirect("winkelmandje.aspx");
+            }
+            else
+            {
+                Response.Redirect("WinkelmandjeLeeg.aspx");
+            }
         }
     }
 }

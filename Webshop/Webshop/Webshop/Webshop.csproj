@@ -72,6 +72,8 @@
     <Content Include="Images\amdRadeonRX570.png" />
     <Content Include="toevoegen.aspx" />
     <Content Include="Web.config" />
+    <Content Include="winkelmandje.aspx" />
+    <Content Include="WinkelmandjeLeeg.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Bestellijn.cs" />
@@ -95,6 +97,20 @@
     </Compile>
     <Compile Include="toevoegen.aspx.designer.cs">
       <DependentUpon>toevoegen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="winkelmandje.aspx.cs">
+      <DependentUpon>winkelmandje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="winkelmandje.aspx.designer.cs">
+      <DependentUpon>winkelmandje.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WinkelmandjeLeeg.aspx.cs">
+      <DependentUpon>WinkelmandjeLeeg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WinkelmandjeLeeg.aspx.designer.cs">
+      <DependentUpon>WinkelmandjeLeeg.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

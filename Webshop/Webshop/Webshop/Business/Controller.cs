@@ -31,7 +31,19 @@ namespace Webshop.Business
             return persistence.loadCart();
         }
 
+        public Product laadArtikel(int id )
+        {
+            return persistence.getProduct(id);
+        }
        
+        public void PasVoorraadAan(int id, int voorraad)
+        {
+            persistence.UpdateVoorraad(id, voorraad);
+        }
 
+        public bool MandjeChecken(int klantnr)
+        {
+            return persistence.CheckMandje(klantnr);
+        }
     }
 }

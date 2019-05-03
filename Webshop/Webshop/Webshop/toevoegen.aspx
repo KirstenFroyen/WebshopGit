@@ -12,6 +12,7 @@
             text-decoration: underline;
         }
         .auto-style2 {
+            border: 1px solid blue;
             width: 100%;
         }
         .auto-style3 {
@@ -27,33 +28,38 @@
             <table class="auto-style2">
                 <tr>
                     <td rowspan="4">
-                        <asp:Image ID="Image1" runat="server" />
+                        <asp:Image ID="imgFoto" runat="server" Width="175px" />
                     </td>
-                    <td class="auto-style3"></td>
+                    <td class="auto-style3">ArtNr:</td>
                     <td class="auto-style3">
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblArtNr" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
+                    <td>Naam:</td>
                     <td>
-                        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblNaam" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
+                    <td>Prijs:</td>
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblPrijs" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
+                    <td>Voorraad:</td>
                     <td>
-                        <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblVoorraad" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>
             <br />
+            <asp:Label ID="lblWaarschuwing" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+            <br />
+            Aantal te bestellen exemplaren van dit item : <asp:TextBox ID="txtbAantal" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnToevoegenAanMand" runat="server" OnClick="btnToevoegenAanMand_Click" Text="Voeg toe aan mandje..." />
             <br />
             </strong></em>
         </div>

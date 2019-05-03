@@ -10,7 +10,7 @@
 namespace Webshop {
     
     
-    public partial class toevoegen {
+    public partial class winkelmandje {
         
         /// <summary>
         /// form1 control.
@@ -22,75 +22,57 @@ namespace Webshop {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// imgFoto control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgFoto;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lblArtNr control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblArtNr;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// lblNaam control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNaam;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// lblPrijs control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrijs;
+        protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// lblVoorraad control.
+        /// Label6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVoorraad;
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// lblWaarschuwing control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWaarschuwing;
-        
-        /// <summary>
-        /// txtbAantal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbAantal;
-        
-        /// <summary>
-        /// btnToevoegenAanMand control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnToevoegenAanMand;
+        protected global::System.Web.UI.WebControls.Label Label4;
     }
 }

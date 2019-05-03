@@ -17,24 +17,31 @@
         <div>
             <span class="auto-style1"><em><strong>Online GPU-shop</strong></em></span> - <em><strong>Catalogus<br />
             <br />
-            <asp:GridView ID="gvProducten" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProducten_SelectedIndexChanged">
+            <asp:GridView ID="gvProducten" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProducten_SelectedIndexChanged" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="ArtNr" HeaderText="ArtNr">
                     <ItemStyle Width="75px" />
                     </asp:BoundField>
                     <asp:ImageField DataImageUrlField="Foto" HeaderText="Foto">
                         <ControlStyle Width="150px" />
+                        <ItemStyle Width="175px" />
                     </asp:ImageField>
                     <asp:BoundField DataField="Naam" HeaderText="Naam">
                     <ItemStyle Width="150px" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="Prijs" DataFormatString="{0:c}" HeaderText="Prijs">
+                    <asp:BoundField DataField="Prijs" DataFormatString="{0:C}" HeaderText="Prijs">
                     <ItemStyle Width="85px" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="Voorraad" HeaderText="Voorraad" />
-                    <asp:CommandField SelectText="Voeg toe aan winkelmandje" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Voorraad" HeaderText="Voorraad" >
+                    <ItemStyle Width="100px" />
+                    </asp:BoundField>
+                    <asp:CommandField SelectText="Voeg toe aan winkelmandje" ShowSelectButton="True" >
+                    <ItemStyle Width="175px" />
+                    </asp:CommandField>
                 </Columns>
             </asp:GridView>
+            <br />
+            <asp:Button ID="btnWinkelmandje" runat="server" OnClick="btnWinkelmandje_Click" Text="Bekijk de inhoud van het winkelmandje..." Width="100%" />
             <br />
             </strong></em>
         </div>

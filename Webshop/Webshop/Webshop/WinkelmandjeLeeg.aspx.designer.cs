@@ -10,7 +10,7 @@
 namespace Webshop {
     
     
-    public partial class _default {
+    public partial class WinkelmandjeLeeg {
         
         /// <summary>
         /// form1 control.
@@ -22,21 +22,12 @@ namespace Webshop {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// gvProducten control.
+        /// btnTerug control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProducten;
-        
-        /// <summary>
-        /// btnWinkelmandje control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnWinkelmandje;
+        protected global::System.Web.UI.WebControls.Button btnTerug;
     }
 }

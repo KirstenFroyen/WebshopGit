@@ -30,8 +30,9 @@ namespace Webshop.Persistence
                 product.Voorraad = Convert.ToInt32(dtr["Voorraad"]);
 
             }
-            return product;
             conn.Close();
+            return product;
+            
         }
 
 
@@ -91,6 +92,36 @@ namespace Webshop.Persistence
             }
             conn.Close();
             return _lijst;
+        }
+
+        public void UpdateVoorraad(int id, int voorraad)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string qry = "update tblproduct set voorraad = " + voorraad + " where artnr=" + id;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public bool CheckMandje(int klantnr)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string qry = "select * from tblwinkelmandje where KlantNr = " + klantnr;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            bool isleeg;
+            if (dtr.HasRows)
+            {
+                isleeg = true;
+            }
+            else
+            {
+                isleeg = false;
+            }
+            conn.Close();
+            return isleeg;
         }
 
     }
