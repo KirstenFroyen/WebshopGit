@@ -38,7 +38,7 @@ namespace Webshop
 
         protected void btnWinkelmandje_Click(object sender, EventArgs e)
         {
-            if (_cont.MandjeChecken(1))
+            if (_cont.mandjeChecken(1) == false)
             {
                 Response.Redirect("winkelmandje.aspx");
             }

@@ -29,7 +29,7 @@
                     <asp:BoundField DataField="Naam" HeaderText="Naam">
                     <ItemStyle Width="150px" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="Prijs" DataFormatString="{0:C}" HeaderText="Prijs">
+                    <asp:BoundField DataField="Prijs" DataFormatString="€ {0}" HeaderText="Prijs">
                     <ItemStyle Width="85px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="Voorraad" HeaderText="Voorraad" >

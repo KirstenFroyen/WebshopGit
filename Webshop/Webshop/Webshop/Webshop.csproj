@@ -69,7 +69,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="Images\amdRadeonRX570 Armor.png" />
     <Content Include="Images\amdRadeonRX570.png" />
+    <Content Include="Images\amdRadeonRX580Armor.png" />
+    <Content Include="Images\deleteknop.png" />
+    <Content Include="Images\sapphireRadeonVII16GB.png" />
+    <Content Include="Images\w8100.jpg.png" />
+    <Content Include="Images\w9100.jpg.png" />
+    <Content Include="Images\xfxRadeonFatboy.jpg.png" />
     <Content Include="toevoegen.aspx" />
     <Content Include="Web.config" />
     <Content Include="winkelmandje.aspx" />
@@ -81,6 +88,7 @@
     <Compile Include="Business\Controller.cs" />
     <Compile Include="Business\Klant.cs" />
     <Compile Include="Business\Product.cs" />
+    <Compile Include="Business\Totalen.cs" />
     <Compile Include="Business\Winkelmandje.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

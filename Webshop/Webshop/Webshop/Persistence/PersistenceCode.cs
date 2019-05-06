@@ -35,6 +35,16 @@ namespace Webshop.Persistence
             
         }
 
+        public void deleteProduct(int id, int klantnummer)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string qry = "DELETE FROM tblwinkelmandje WHERE ArtNr =" + id +" and KlantNr =" + klantnummer;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
 
         public List<Product> loadProducts()
         {
@@ -74,8 +84,8 @@ namespace Webshop.Persistence
         {
             MySqlConnection conn = new MySqlConnection(ConnStr);
             conn.Open();
-            string qry = "SELECT Foto, winkelmandje.ArtNr, Naam, Aantal, Prijs, SUM(Aantal * Prijs) as Totaal   FROM tblwinkelmandje INNER JOIN " +
-                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr";
+            string qry = "SELECT Foto, tblwinkelmandje.ArtNr, Naam, Aantal, Prijs, SUM(Aantal * Prijs) as Totaal   FROM tblwinkelmandje INNER JOIN " +
+                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr  ORDER BY ArtNr";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
             List<Winkelmandje> _lijst = new List<Winkelmandje>();
@@ -88,7 +98,7 @@ namespace Webshop.Persistence
                 winkelmandje.Aantal = Convert.ToInt32(dtr["Aantal"]);
                 winkelmandje.Prijs = Convert.ToDouble(dtr["Prijs"]);
                 winkelmandje.Totaal = Convert.ToDouble(dtr["Totaal"]);
-
+                _lijst.Add(winkelmandje);
             }
             conn.Close();
             return _lijst;
@@ -114,14 +124,64 @@ namespace Webshop.Persistence
             bool isleeg;
             if (dtr.HasRows)
             {
-                isleeg = true;
+                isleeg = false;
             }
             else
             {
-                isleeg = false;
+                isleeg = true;
             }
             conn.Close();
             return isleeg;
+        }
+
+        public Klant loadClient(int klantnr )
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string qry = "SELECT * FROM tblklant WHERE KlantNr =" + klantnr;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            Klant klant = new Klant();
+            while(dtr.Read())
+            {
+                klant.KlantNr = Convert.ToInt32(dtr["KlantNr"]);
+                klant.Voornaam = dtr["Voornaam"].ToString();
+                klant.Naam = dtr["Naam"].ToString();
+                klant.Adres = dtr["Adres"].ToString();
+                klant.PC = dtr["PC"].ToString();
+                klant.Gemeente = dtr["Gemeente"].ToString();
+
+
+            }
+            conn.Close();
+            return klant;
+        }
+
+        public void insertOrder(Bestelling order)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string juistedatum = order.Datum.ToString("yyyy-MM-dd hh:mm:ss");
+            string qry = "insert into tblbestelling(datum, klantnr, histprijs) values ('" + juistedatum + "','" + order.KlantNr + "','" + order.HistPrijs + "')";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+        }
+
+        public double getHistprice(int artnr)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string qry = "SELECT Prijs from tblproduct WHERE ArtNr = " + artnr;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            
+            double prijs =  Convert.ToDouble(dtr["Prijs"]);
+            conn.Close();
+
+            return prijs;
+
         }
 
     }
