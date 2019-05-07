@@ -12,6 +12,7 @@
             text-decoration: underline;
         }
         .auto-style2 {
+            border: 1px solid blue;
             width: 100%;
         }
     </style>
@@ -80,6 +81,7 @@
                 </asp:BoundField>
             </Columns>
         </asp:GridView>
+        <br />
         <br />
         <br />
         <asp:Button ID="btnBestellen" runat="server" OnClick="btnBestellen_Click" Text="Plaats bestelling ..." Width="80%" />

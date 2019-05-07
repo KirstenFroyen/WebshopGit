@@ -22,15 +22,16 @@ namespace Webshop
 
             gvMandje.DataSource = _cont.haalMandjeOp();
             gvMandje.DataBind();
-            
+
         }
         protected void gvMandje_SelectedIndexChanged(object sender, EventArgs e)
         {
            
-            
+            int NieuweVoorraad = _cont.laadArtikel(Convert.ToInt32(Session["ArtNr"])).Voorraad + Convert.ToInt32(gvMandje.SelectedRow.Cells[4].Text);
             _cont.verwijderProduct(Convert.ToInt32(gvMandje.SelectedRow.Cells[2].Text), 1);
-           
-            if(_cont.mandjeChecken(1))
+            _cont.PasVoorraadAan(Convert.ToInt32(Session["ArtNr"]), NieuweVoorraad);
+
+            if (_cont.mandjeChecken(1))
             {
                 Response.Redirect("WinkelmandjeLeeg.aspx");
             }

@@ -84,8 +84,8 @@ namespace Webshop.Persistence
         {
             MySqlConnection conn = new MySqlConnection(ConnStr);
             conn.Open();
-            string qry = "SELECT Foto, tblwinkelmandje.ArtNr, Naam, Aantal, Prijs, SUM(Aantal * Prijs) as Totaal   FROM tblwinkelmandje INNER JOIN " +
-                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr  ORDER BY ArtNr";
+            string qry = "SELECT Foto, tblwinkelmandje.ArtNr, Naam, Aantal, Prijs, (Aantal * Prijs) as Totaal FROM tblwinkelmandje INNER JOIN " +
+                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr  ORDER BY tblwinkelmandje.ArtNr";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
             List<Winkelmandje> _lijst = new List<Winkelmandje>();
@@ -176,8 +176,11 @@ namespace Webshop.Persistence
             string qry = "SELECT Prijs from tblproduct WHERE ArtNr = " + artnr;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
-            
-            double prijs =  Convert.ToDouble(dtr["Prijs"]);
+            double prijs = 0;
+            while (dtr.Read())
+            {
+              prijs = Convert.ToDouble(dtr["Prijs"]);
+            }
             conn.Close();
 
             return prijs;
