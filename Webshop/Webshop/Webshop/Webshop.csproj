@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bestelbevestiging.aspx" />
     <Content Include="default.aspx" />
     <Content Include="Images\amdRadeonRX570 Armor.png" />
     <Content Include="Images\amdRadeonRX570.png" />
@@ -83,6 +84,13 @@
     <Content Include="WinkelmandjeLeeg.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bestelbevestiging.aspx.cs">
+      <DependentUpon>bestelbevestiging.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bestelbevestiging.aspx.designer.cs">
+      <DependentUpon>bestelbevestiging.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Business\Bestellijn.cs" />
     <Compile Include="Business\Bestelling.cs" />
     <Compile Include="Business\Controller.cs" />

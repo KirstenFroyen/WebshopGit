@@ -28,9 +28,9 @@ namespace Webshop.Business
             
         }
 
-        public List<Winkelmandje> haalMandjeOp()
+        public List<Winkelmandje> haalMandjeOp(int KN)
         {
-            return persistence.loadCart();
+            return persistence.loadCart(KN);
         }
 
         public Product laadArtikel(int id )
@@ -69,10 +69,24 @@ namespace Webshop.Business
             persistence.insertOrder(bestelling);
         }
 
+        public void slaBestellijnOp(int ordernr, int artnr, int aantal)
+        {
+            bestellijn.OrderNr = ordernr;
+            bestellijn.ArtikelNr = artnr;
+            bestellijn.Aantal = aantal;
+
+            persistence.insertOrderline(bestellijn);
+        }
+
 
         public double haalPrijsOp(int artnr)
         {
             return persistence.getHistprice(artnr);
+        }
+
+        public List<Totalen> Haaltotalenop(int klnr)
+            {
+            return persistence.getTotals(klnr);
         }
     }
 }

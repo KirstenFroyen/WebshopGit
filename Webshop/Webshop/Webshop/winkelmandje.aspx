@@ -15,6 +15,9 @@
             border: 1px solid blue;
             width: 100%;
         }
+        .auto-style3 {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +85,24 @@
             </Columns>
         </asp:GridView>
         <br />
+        <asp:DataList ID="DataList1" runat="server">
+            <ItemTemplate>
+                <table class="auto-style3">
+                    <tr>
+                        <td>Totaalexcl. BTW:</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>BTW:</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Totaal incl. BTW:</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </ItemTemplate>
+        </asp:DataList>
         <br />
         <br />
         <asp:Button ID="btnBestellen" runat="server" OnClick="btnBestellen_Click" Text="Plaats bestelling ..." Width="80%" />

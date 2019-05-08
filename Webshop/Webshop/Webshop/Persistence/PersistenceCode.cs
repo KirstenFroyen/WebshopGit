@@ -80,12 +80,13 @@ namespace Webshop.Persistence
             conn.Close();
         }
 
-        public List<Winkelmandje> loadCart()
+        public List<Winkelmandje> loadCart(int klantnr)
         {
             MySqlConnection conn = new MySqlConnection(ConnStr);
             conn.Open();
             string qry = "SELECT Foto, tblwinkelmandje.ArtNr, Naam, Aantal, Prijs, (Aantal * Prijs) as Totaal FROM tblwinkelmandje INNER JOIN " +
-                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr  ORDER BY tblwinkelmandje.ArtNr";
+                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr  ORDER BY tblwinkelmandje.ArtNr " +
+                "WHERE KlantNr =" +klantnr;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
             List<Winkelmandje> _lijst = new List<Winkelmandje>();
@@ -186,6 +187,41 @@ namespace Webshop.Persistence
             return prijs;
 
         }
+
+        public void insertOrderline(Bestellijn orderl)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+           
+            string qry = "insert into tblbestellijn(OrderNr, ArtikelNr, Aantal) values ('" + orderl.OrderNr + "','" + orderl.ArtikelNr + "','" + orderl.Aantal + "')";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+        }
+
+        public List<Totalen> getTotals(int klnr)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string qry = "SELECT SUM(Aantal * Prijs ) as TotExBtw, SUM((Aantal * Prijs) * 0.21) as Btw, SUM((Aantal * Prijs) * 1.21) as TotIncBtw FROM tblwinkelmandje " +
+                "WHERE KlantNr=" + klnr;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            List<Totalen> _li = new List<Totalen>();
+            while(dtr.Read())
+            {
+                Totalen tot = new Totalen();
+                tot.TotZondBtw = Convert.ToDouble(dtr["TotExBtw"]);
+                tot.Btw = Convert.ToDouble(dtr["Btw"]);
+                tot.TotMetBtw = Convert.ToDouble(dtr["TotIncBtw"]);
+                _li.Add(tot);
+            }
+            conn.Close();
+            return _li;
+
+        }
+
 
     }
 }

@@ -20,7 +20,7 @@ namespace Webshop
             lblGemeente.Text = _cont.laadKlant(1).Gemeente.ToString();
             lblDatum.Text = DateTime.Now.ToLongDateString();
 
-            gvMandje.DataSource = _cont.haalMandjeOp();
+            gvMandje.DataSource = _cont.haalMandjeOp(1);
             gvMandje.DataBind();
 
         }
@@ -37,7 +37,7 @@ namespace Webshop
             }
             else
             {
-                gvMandje.DataSource = _cont.haalMandjeOp();
+                gvMandje.DataSource = _cont.haalMandjeOp(1);
                 gvMandje.DataBind();
             }
         }
