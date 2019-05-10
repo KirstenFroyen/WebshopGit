@@ -11,7 +11,14 @@ namespace Webshop
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblOrderNr.Text = Convert.ToInt32(Session["ordernr"]).ToString();
+            lblTotaal.Text = "€ " + Math.Round(Convert.ToDouble(Session["totaal"]),2);
 
+        }
+
+        protected void btnTerugNaarCath_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("default.aspx");
         }
     }
 }

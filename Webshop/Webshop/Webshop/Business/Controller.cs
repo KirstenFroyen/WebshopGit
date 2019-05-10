@@ -59,21 +59,22 @@ namespace Webshop.Business
         }
 
 
-        public void slaBestellingOp( DateTime datum, int klantnr, double histprijs)
+        public void slaBestellingOp( DateTime datum, int klantnr )
         {
           
             bestelling.Datum = datum;
             bestelling.KlantNr = klantnr;
-            bestelling.HistPrijs = histprijs;
+           
 
             persistence.insertOrder(bestelling);
         }
 
-        public void slaBestellijnOp(int ordernr, int artnr, int aantal)
+        public void slaBestellijnOp(int ordernr, int artnr, int aantal, double histprijs)
         {
             bestellijn.OrderNr = ordernr;
             bestellijn.ArtikelNr = artnr;
             bestellijn.Aantal = aantal;
+            bestellijn.HistPrijs = histprijs;
 
             persistence.insertOrderline(bestellijn);
         }
@@ -84,9 +85,19 @@ namespace Webshop.Business
             return persistence.getHistprice(artnr);
         }
 
-        public List<Totalen> Haaltotalenop(int klnr)
+        public Totalen Haaltotalenop(int klnr)
             {
             return persistence.getTotals(klnr);
+        }
+        public int haalOrderNrOp(DateTime datum)
+        {
+            return persistence.getOrderNumber(datum);
+
+        }
+
+        public int Haalvoorraadop(int id)
+        {
+            return persistence.getVoorraad(id);
         }
     }
 }

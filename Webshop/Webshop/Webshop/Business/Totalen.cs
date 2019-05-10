@@ -7,8 +7,8 @@ namespace Webshop.Business
 {
     public class Totalen
     {
-        public double TotZondBtw { get; set; }
+        public double TotExBtw { get; set; }
         public double Btw { get; set; }
-        public double TotMetBtw { get; set; }
+        public double TotIncBtw { get; set; }
     }
 }

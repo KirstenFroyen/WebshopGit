@@ -21,27 +21,40 @@ namespace Webshop
 
         protected void btnToevoegenAanMand_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txtbAantal.Text) > _cont.laadArtikel(Convert.ToInt32(Session["ArtNr"])).Voorraad)
+            int Getal;
+
+            if (int.TryParse(txtbAantal.Text, out Getal) && Getal > 0)
             {
-                lblWaarschuwing.Text = "Voorraad is ontoereikend! ";
+               
+
+                if (Convert.ToInt32(txtbAantal.Text) > _cont.laadArtikel(Convert.ToInt32(Session["ArtNr"])).Voorraad)
+                {
+                    lblWaarschuwing.Text = "Voorraad is ontoereikend! ";
            
+                }
+                else
+                {
+                    try
+                    {
+                        int NieuweVoorraad = _cont.laadArtikel(Convert.ToInt32(Session["ArtNr"])).Voorraad - Convert.ToInt32(txtbAantal.Text);
+                        _cont.voegProductAanMandjeToe(1, _cont.laadArtikel(Convert.ToInt32(Session["ArtNr"])).ArtNr, Convert.ToInt32(txtbAantal.Text));
+                        _cont.PasVoorraadAan(Convert.ToInt32(Session["ArtNr"]), NieuweVoorraad);
+                   
+                        Response.Redirect("winkelmandje.aspx");
+                    }
+                    catch
+                    {
+                        lblWaarschuwing.Text = "Dit product zit al in het mandje. Als u het aantal wil wijzigen, verwijder het dan uit het mandje en voeg het correcte aantal toe.";
+                    }
+                
+                }
+
             }
             else
             {
-                try
-                {
-                    int NieuweVoorraad = _cont.laadArtikel(Convert.ToInt32(Session["ArtNr"])).Voorraad - Convert.ToInt32(txtbAantal.Text);
-                    _cont.voegProductAanMandjeToe(1, _cont.laadArtikel(Convert.ToInt32(Session["ArtNr"])).ArtNr, Convert.ToInt32(txtbAantal.Text));
-                    _cont.PasVoorraadAan(Convert.ToInt32(Session["ArtNr"]), NieuweVoorraad);
-                   
-                    Response.Redirect("winkelmandje.aspx");
-                }
-                catch
-                {
-                    lblWaarschuwing.Text = "Dit product zit al in het mandje. Als u het aantal wil wijzigen, verwijder het dan uit het mandje en voeg het correcte aantal toe.";
-                }
-                
+                lblWaarschuwing.Text = "Vul een geldig getal in bij het gewenste aantal artikelen!";
             }
+
         }
     }
 }

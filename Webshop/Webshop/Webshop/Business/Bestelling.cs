@@ -10,6 +10,6 @@ namespace Webshop.Business
         public int OrderNr { get; set; }
         public DateTime Datum { get; set; }
         public int KlantNr { get; set; }
-        public double HistPrijs { get; set; }
+       
     }
 }

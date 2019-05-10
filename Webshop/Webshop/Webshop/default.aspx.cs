@@ -23,8 +23,6 @@ namespace Webshop
                         gvProducten.Rows[i].Cells[5].Text = "Niet op voorraad";
                         gvProducten.Rows[i].Cells[5].Enabled = false;
                     }
-                
-                
             }
         }
 

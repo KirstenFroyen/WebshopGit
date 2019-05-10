@@ -85,8 +85,9 @@ namespace Webshop.Persistence
             MySqlConnection conn = new MySqlConnection(ConnStr);
             conn.Open();
             string qry = "SELECT Foto, tblwinkelmandje.ArtNr, Naam, Aantal, Prijs, (Aantal * Prijs) as Totaal FROM tblwinkelmandje INNER JOIN " +
-                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr  ORDER BY tblwinkelmandje.ArtNr " +
-                "WHERE KlantNr =" +klantnr;
+                "tblproduct ON tblwinkelmandje.ArtNr = tblproduct.ArtNr  WHERE KlantNr =" + klantnr + "  ORDER BY tblwinkelmandje.ArtNr";
+
+
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
             List<Winkelmandje> _lijst = new List<Winkelmandje>();
@@ -163,7 +164,7 @@ namespace Webshop.Persistence
             MySqlConnection conn = new MySqlConnection(ConnStr);
             conn.Open();
             string juistedatum = order.Datum.ToString("yyyy-MM-dd hh:mm:ss");
-            string qry = "insert into tblbestelling(datum, klantnr, histprijs) values ('" + juistedatum + "','" + order.KlantNr + "','" + order.HistPrijs + "')";
+            string qry = "insert into tblbestelling(datum, klantnr) values ('" + juistedatum + "','" + order.KlantNr + "')";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -192,34 +193,68 @@ namespace Webshop.Persistence
         {
             MySqlConnection conn = new MySqlConnection(ConnStr);
             conn.Open();
+            string JuistePrijs = orderl.HistPrijs.ToString().Replace(",", ".");
            
-            string qry = "insert into tblbestellijn(OrderNr, ArtikelNr, Aantal) values ('" + orderl.OrderNr + "','" + orderl.ArtikelNr + "','" + orderl.Aantal + "')";
+            string qry = "insert into tblbestellijn(OrderNr, ArtikelNr, Aantal, HistPrijs) values ('" + orderl.OrderNr + "','" + orderl.ArtikelNr + "','" + orderl.Aantal + "','"+JuistePrijs+"')";
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
 
         }
 
-        public List<Totalen> getTotals(int klnr)
+        public Totalen getTotals(int klnr)
         {
             MySqlConnection conn = new MySqlConnection(ConnStr);
             conn.Open();
-            string qry = "SELECT SUM(Aantal * Prijs ) as TotExBtw, SUM((Aantal * Prijs) * 0.21) as Btw, SUM((Aantal * Prijs) * 1.21) as TotIncBtw FROM tblwinkelmandje " +
+            string qry = "SELECT SUM(Aantal * Prijs ) as TotExBtw, SUM((Aantal * Prijs) * 0.21) as Btw, SUM((Aantal * Prijs) * 1.21) as TotIncBtw FROM tblwinkelmandje INNER JOIN tblproduct on tblproduct.ArtNr = " +
+                "tblwinkelmandje.ArtNr " +
                 "WHERE KlantNr=" + klnr;
             MySqlCommand cmd = new MySqlCommand(qry, conn);
             MySqlDataReader dtr = cmd.ExecuteReader();
-            List<Totalen> _li = new List<Totalen>();
-            while(dtr.Read())
+            Totalen tot = new Totalen();
+            while (dtr.Read())
             {
-                Totalen tot = new Totalen();
-                tot.TotZondBtw = Convert.ToDouble(dtr["TotExBtw"]);
+                tot.TotExBtw = Convert.ToDouble(dtr["TotExBtw"]);
                 tot.Btw = Convert.ToDouble(dtr["Btw"]);
-                tot.TotMetBtw = Convert.ToDouble(dtr["TotIncBtw"]);
-                _li.Add(tot);
+                tot.TotIncBtw = Convert.ToDouble(dtr["TotIncBtw"]);
             }
             conn.Close();
-            return _li;
+            return tot;
 
+        }
+
+        public int getOrderNumber(DateTime Datum)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string juistedatum = Datum.ToString("yyyy-MM-dd hh:mm:ss");
+            string qry = "select ordernr from  tblbestelling where datum = '" + juistedatum+"'";
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            int OrderNr = 0;
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            while(dtr.Read())
+            {
+                 OrderNr = Convert.ToInt32(dtr["OrderNr"]);
+            }
+            conn.Close();
+            return OrderNr;
+
+        }
+
+        public int getVoorraad(int Id)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            conn.Open();
+            string qry = "select voorraad from tblproduct where ArtNr=" + Id;
+            MySqlCommand cmd = new MySqlCommand(qry, conn);
+            MySqlDataReader dtr = cmd.ExecuteReader();
+            int voorraad = 0;
+            while(dtr.Read())
+            {
+                voorraad = Convert.ToInt32(dtr["Voorraad"]);
+            }
+            conn.Close();
+            return voorraad;
         }
 
 

@@ -85,13 +85,31 @@ namespace Webshop {
         protected global::System.Web.UI.WebControls.GridView gvMandje;
         
         /// <summary>
-        /// DataList1 control.
+        /// lblTotExBtw control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataList1;
+        protected global::System.Web.UI.WebControls.Label lblTotExBtw;
+        
+        /// <summary>
+        /// lblBtw control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBtw;
+        
+        /// <summary>
+        /// lblTotIncBtw control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotIncBtw;
         
         /// <summary>
         /// btnBestellen control.

@@ -18,6 +18,9 @@
         .auto-style3 {
             width: 100%;
         }
+        .auto-style4 {
+            height: 23px;
+        }
     </style>
 </head>
 <body>
@@ -85,24 +88,28 @@
             </Columns>
         </asp:GridView>
         <br />
-        <asp:DataList ID="DataList1" runat="server">
-            <ItemTemplate>
-                <table class="auto-style3">
-                    <tr>
-                        <td>Totaalexcl. BTW:</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
+        <br />
+        <table class="auto-style3">
+            <tr>
+                        <td class="auto-style4" >Totaal excl. BTW:</td>
+                        <td class="auto-style4" >
+                            <asp:Label ID="lblTotExBtw" runat="server"></asp:Label>
+                        </td>
+            </tr>
+            <tr>
                         <td>BTW:</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>Totaal incl. BTW:</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </table>
-            </ItemTemplate>
-        </asp:DataList>
+                        <td>
+                            <asp:Label ID="lblBtw" runat="server"></asp:Label>
+                        </td>
+            </tr>
+            <tr>
+                        <td >Totaal incl. BTW:</td>
+                        <td >
+                            <asp:Label ID="lblTotIncBtw" runat="server"></asp:Label>
+                        </td>
+            </tr>
+        </table>
+        <br />
         <br />
         <br />
         <asp:Button ID="btnBestellen" runat="server" OnClick="btnBestellen_Click" Text="Plaats bestelling ..." Width="80%" />
